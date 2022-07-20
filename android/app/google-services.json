@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1066731165724",
+    "firebase_url": "https://nigel-flutterbasic-89914-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nigel-flutterbasic-89914",
+    "storage_bucket": "nigel-flutterbasic-89914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066731165724:android:f4b092133ae7db083f67d9",
+        "android_client_info": {
+          "package_name": "com.example.nigel_flutterbasic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066731165724-2ulo372vkd3nppprrg3mnvurje36fmeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSA7PnSApb1rZ6KE-xz6tlKXuwCoFj-so"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066731165724-2ulo372vkd3nppprrg3mnvurje36fmeb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
