@@ -14,7 +14,7 @@ void main() async {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const RegisterView(),
+      home: const LoginView(),
     ),
   );
 }
