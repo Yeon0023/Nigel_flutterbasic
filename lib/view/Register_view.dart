@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nigel_flutterbasic/view/Login_view.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
+import '../firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class RegisterView extends StatefulWidget {
@@ -92,3 +91,5 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+
+
