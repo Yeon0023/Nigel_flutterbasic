@@ -4,15 +4,17 @@ import 'package:nigel_flutterbasic/view/Login_view.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  //This is to connect device app to firebase server.
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const LoginView(),
+      home: const RegisterView(),
     ),
   );
 }
@@ -78,10 +80,18 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
-                      final userCredential = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: email, password: password);
-                      print(userCredential);
+                      try {
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: email, password: password);
+                        print(userCredential);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('Weak Password!');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('Email already in use!');
+                        }
+                      }
                     },
                     child: const Text("Register"),
                   ),
