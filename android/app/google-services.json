@@ -41,6 +41,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066731165724:android:653d2dc4bee810f43f67d9",
+        "android_client_info": {
+          "package_name": "se.pixolity.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066731165724-2ulo372vkd3nppprrg3mnvurje36fmeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSA7PnSApb1rZ6KE-xz6tlKXuwCoFj-so"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066731165724-2ulo372vkd3nppprrg3mnvurje36fmeb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1066731165724-qbmvv4r7q8rgr7q964ohcjclk7rrbggo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nigelFlutterbasic"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
