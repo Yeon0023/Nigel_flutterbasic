@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:developer' as devtools show log; //This is to replace print()
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -63,10 +64,16 @@ class _LoginViewState extends State<LoginView> {
               final password = _password.text;
               //Handling Exception when Login fail or no user registered
               try {
-                final userCredential = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(
-                        email: email, password: password);
-                print(userCredential);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+                //devtools.log(userCredential.toString());
+                //ignore: use_build_context_synchronously
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/note/',
+                  (route) => false,
+                );
               } on FirebaseAuthException catch (e) {
                 //print(e.code);
                 if (e.code == 'user-not-found') {
@@ -76,20 +83,20 @@ class _LoginViewState extends State<LoginView> {
                   //   print(e); //print the error itself
                   //   print(e.runtimeType); //print error type
                 } else if (e.code == 'wrong-password') {
-                  print('Wrong Password!');
+                  devtools.log('Wrong Password!');
                   // print('Something else happen');
                   // print(e.code);
                 }
               }
             },
-          child: const Text("Login"),
+            child: const Text("Login"),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register/', 
+                '/register/',
                 (route) => false,
-                );
+              );
             },
             child: const Text('Not registered yet? Register here!'),
           )

@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:nigel_flutterbasic/view/Login_view.dart';
-import 'package:nigel_flutterbasic/view/Register_view.dart';
-import 'package:nigel_flutterbasic/view/Verify_email_view.dart';
+import 'package:nigel_flutterbasic/view/login_view.dart';
+import 'package:nigel_flutterbasic/view/register_view.dart';
+import 'package:nigel_flutterbasic/view/verify_email_view.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'dart:developer' as devtools show log;
 
 void main() {
   //This is to connect device app to firebase server.
@@ -21,8 +20,9 @@ void main() {
       ),
       home: const HomePage(),
       routes: {
-       '/login/': (context) => const LoginView(),
-       '/register/' : (context) => const RegisterView(), 
+        '/login/': (context) => const LoginView(),
+        '/register/': (context) => const RegisterView(),
+        '/note/': (context) => const NoteView(),
       },
     ),
   );
@@ -40,18 +40,17 @@ class HomePage extends StatelessWidget {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-          final user = FirebaseAuth.instance.currentUser;
-          if(user!=null){
-            if(user.emailVerified){
-              return const NoteView();
-              }
-              else {
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              if (user.emailVerified) {
+                return const NoteView();
+              } else {
                 return const VerifyEmailView();
-              } 
-          } else {
+              }
+            } else {
               return const LoginView();
             }
-          default: 
+          default:
             return const CircularProgressIndicator();
         }
       },
@@ -60,7 +59,7 @@ class HomePage extends StatelessWidget {
 }
 
 enum MenuAction { logout }
- 
+
 class NoteView extends StatefulWidget {
   const NoteView({Key? key}) : super(key: key);
 
@@ -78,69 +77,58 @@ class _NoteViewState extends State<NoteView> {
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               // devtools.log(value.toString());
-              switch (value) { 
+              switch (value) {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   // devtools.log(shouldLogout.toString());
                   // break;
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
+                    //ignore: use_build_context_synchronously
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login/', 
+                      '/login/',
                       (_) => false,
                     );
-                  }    
+                  }
               }
-            }, 
+            },
             itemBuilder: (context) {
-              return const [ 
+              return const [
                 PopupMenuItem<MenuAction>(
-                  value: MenuAction.logout, 
-                  child: Text('Logout')
-                ),
+                    value: MenuAction.logout, child: Text('Logout')),
               ];
-            } ,
+            },
           )
         ],
       ),
       body: const Text('Hello World!'),
     );
   }
-}  
+}
 
-Future<bool> showLogOutDialog(BuildContext context){
+Future<bool> showLogOutDialog(BuildContext context) {
   return showDialog<bool>(
-    context: context, 
-    builder: (context){
+    context: context,
+    builder: (context) {
       return AlertDialog(
         title: const Text('Logout'),
         content: const Text('Are you sure you want to Logout?'),
         actions: [
           TextButton(
-            onPressed: () {
-            Navigator.of(context).pop(false);
-          }, 
-            child: const Text('Cancel')
-          ),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+              child: const Text('Cancel')),
           TextButton(
-            onPressed: () {
-            Navigator.of(context).pop(true);
-          }, 
-            child: const Text('Log out')
-          ),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+              child: const Text('Log out')),
         ],
       );
     },
-  ).then((value) => value ?? false); 
+  ).then((value) => value ?? false);
 }
-
-
-
-
-
-
-
-
 
 //***Old code that was removed***
 
@@ -152,7 +140,7 @@ Future<bool> showLogOutDialog(BuildContext context){
 //     return const VerifyEmailView();
 //   }
 
-// This is what called setting up an Anonymous Route 
+// This is what called setting up an Anonymous Route
 // WidgetsBinding.instance.addPostFrameCallback((_) {
 //   Navigator.pushReplacement(
 //     context, MaterialPageRoute(
@@ -178,7 +166,7 @@ Future<bool> showLogOutDialog(BuildContext context){
 //             switch (snapshot.connectionState) {
 //               case ConnectionState.done:
 //                 return const LoginView();
-//               default: 
+//               default:
 //                 return const Text("Loading...");
 //             }
 //           },
@@ -186,11 +174,10 @@ Future<bool> showLogOutDialog(BuildContext context){
 //       );
 //     }
 
-
 //Switch for connecting device to server
 // switch (snapshot.connectionState) {
 //   case ConnectionState.done:
 //     return const LoginView();
-//   default: 
+//   default:
 //     return const CircularProgressIndicator();
 //   }
