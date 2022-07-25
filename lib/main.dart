@@ -27,7 +27,6 @@ void main() {
         // Use not Hard coding referces below
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
-        
         noteRoute: (context) => const NoteView(),
       },
     ),
@@ -136,6 +135,17 @@ Future<bool> showLogOutDialog(BuildContext context) {
     },
   ).then((value) => value ?? false);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //***Old code that was removed***
 
