@@ -28,6 +28,7 @@ void main() {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
         noteRoute: (context) => const NoteView(),
+        verifyEmailRoute: (context) => const VerifyEmailView(),
       },
     ),
   );
@@ -135,6 +136,7 @@ Future<bool> showLogOutDialog(BuildContext context) {
     },
   ).then((value) => value ?? false);
 }
+
 
 
 
