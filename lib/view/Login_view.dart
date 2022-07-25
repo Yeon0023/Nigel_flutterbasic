@@ -1,12 +1,11 @@
 //import '../firebase_options.dart';
 //import 'package:firebase_core/firebase_core.dart';
 //import 'package:nigel_flutterbasic/view/Login_view.dart';
-
+//import 'dart:developer' as devtools show log;
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:developer' as devtools show log;
-
-import 'package:nigel_flutterbasic/constats/routes.dart'; //This is to replace print()
+import 'package:nigel_flutterbasic/constats/routes.dart';
+import '../Utilities/Show_error_dialog.dart'; //This is to replace print()
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -135,28 +134,7 @@ class _LoginViewState extends State<LoginView> {
   }
 }
 
-Future<void> showErrorDialog(
-  BuildContext context,
-  String text,
-) {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('An Error Occured'),
-        content: Text(text),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Ok'),
-          )
-        ],
-      );
-    },
-  );
-}
+
 
 
 
