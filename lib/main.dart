@@ -27,6 +27,7 @@ void main() {
         // Use not Hard coding referces below
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
+        
         noteRoute: (context) => const NoteView(),
       },
     ),
