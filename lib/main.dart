@@ -10,9 +10,6 @@ import 'package:firebase_core/firebase_core.dart';
 void main() {
   //This is to connect device app to firebase server.
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
