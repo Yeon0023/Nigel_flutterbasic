@@ -2,6 +2,7 @@ import 'package:nigel_flutterbasic/service/auth/auth_user.dart';
 
 //Creation of abtract class
 abstract class AuthProvider {
+  Future<void> initialize();
   AuthUser? get currentUser;
   Future<AuthUser> logIn({
     required String email,

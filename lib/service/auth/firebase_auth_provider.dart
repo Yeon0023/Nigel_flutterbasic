@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:nigel_flutterbasic/firebase_options.dart';
 import 'package:nigel_flutterbasic/service/auth/auth_user.dart';
 import 'package:nigel_flutterbasic/service/auth/auth_exception.dart';
 import 'package:nigel_flutterbasic/service/auth/auth_provider.dart';
@@ -34,6 +36,13 @@ class FirebaseAuthProvider implements AuthProvider {
     } catch (_) {
       throw GenericAuthException();
     }
+  }
+
+  @override
+  Future<void> initialize() async {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 
   @override
