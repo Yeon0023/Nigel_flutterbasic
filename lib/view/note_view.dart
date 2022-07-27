@@ -19,13 +19,12 @@ class _NoteViewState extends State<NoteView> {
         actions: [
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
-              // devtools.log(value.toString());
               switch (value) {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
                     await AuthService.firebase().logOut();
-                    //ignore: use_build_context_synchronously
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       loginRoute,
                       (_) => false,
