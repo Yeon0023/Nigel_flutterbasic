@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nigel_flutterbasic/constats/routes.dart';
 import 'package:nigel_flutterbasic/service/auth/auth_exception.dart';
 import 'package:nigel_flutterbasic/service/auth/auth_service.dart';
@@ -32,8 +33,13 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.grey[900],
         title: const Text('login'),
+        titleTextStyle: GoogleFonts.bebasNeue(fontSize: 25),
+        centerTitle: true,
       ),
       body: Column(
         children: [
@@ -47,6 +53,10 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     hintText: "Enter Your Email Here",
+                    hintStyle: TextStyle(fontSize: 16),
+                    focusedBorder: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade600)),
                   ),
                 ),
                 TextField(
@@ -57,6 +67,9 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     hintText: "Enter Your Password Here",
+                    hintStyle: TextStyle(fontSize: 16),
+                    focusedBorder: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(),
                   ),
                 ),
                 TextButton(

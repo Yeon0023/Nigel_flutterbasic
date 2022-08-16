@@ -11,16 +11,13 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        brightness: Brightness.dark,
       ),
       home: const HomePage(),
       routes: {
-        // '/login/': (context) => const LoginView(),
-        // '/register/': (context) => const RegisterView(),
-        // '/note/': (context) => const NoteView(),
-        // Use not Hard coding referces below
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
         noteRoute: (context) => const NoteView(),
