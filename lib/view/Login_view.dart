@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 25.0,
-                  vertical: 5,
+                  vertical: 2,
                 ),
 
                 //User email key in box
@@ -67,12 +67,13 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
+
+
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 25.0,
                   vertical: 5,
                 ),
-
                 //User Key in Password
                 child: TextField(
                   controller: _password,
@@ -94,8 +95,9 @@ class _LoginViewState extends State<LoginView> {
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   primary: Colors.orangeAccent,
-                  side: const BorderSide(color: Colors.black54, width: 0.8),
-                  padding: const EdgeInsets.symmetric(horizontal: 155),
+                  side: const BorderSide(color: Colors.black, width: 0.8),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 145.5, vertical: 17),
                   textStyle: GoogleFonts.lobster(fontSize: 17),
                 ),
                 onPressed: () async {
@@ -139,7 +141,7 @@ class _LoginViewState extends State<LoginView> {
                     );
                   }
                 },
-                child: const Text("Login"),
+                child: const Text("Sign In!"),
               ),
 
               // Register redirect button
