@@ -55,8 +55,7 @@ class _LoginViewState extends State<LoginView> {
                     hintText: "Enter Your Email Here",
                     hintStyle: TextStyle(fontSize: 16),
                     focusedBorder: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey.shade600)),
+                    enabledBorder: OutlineInputBorder(),
                   ),
                 ),
                 TextField(
