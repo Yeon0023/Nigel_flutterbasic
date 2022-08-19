@@ -38,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
         elevation: 0,
         backgroundColor: Colors.grey[900],
         title: const Text('login'),
-        titleTextStyle: GoogleFonts.bebasNeue(fontSize: 25),
+        titleTextStyle: GoogleFonts.lobster(fontSize: 35),
         centerTitle: true,
       ),
       body: Column(
@@ -52,7 +52,8 @@ class _LoginViewState extends State<LoginView> {
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
-                    hintText: "Enter Your Email Here",
+                    prefixIcon: Icon(Icons.email),
+                    hintText: 'Enter Your Email Here',
                     hintStyle: TextStyle(fontSize: 16),
                     focusedBorder: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(),
@@ -65,6 +66,7 @@ class _LoginViewState extends State<LoginView> {
                   autocorrect: false,
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
                     hintText: "Enter Your Password Here",
                     hintStyle: TextStyle(fontSize: 16),
                     focusedBorder: OutlineInputBorder(),

@@ -15,6 +15,7 @@ void main() {
       title: 'Flutter Demo',
       theme: ThemeData(
         brightness: Brightness.dark,
+        primarySwatch: Colors.orange,
       ),
       home: const HomePage(),
       routes: {
