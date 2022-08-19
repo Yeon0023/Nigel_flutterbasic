@@ -38,15 +38,22 @@ class _LoginViewState extends State<LoginView> {
         elevation: 0,
         backgroundColor: Colors.grey[900],
         title: const Text('login'),
-        titleTextStyle: GoogleFonts.lobster(fontSize: 35),
+        titleTextStyle: GoogleFonts.lobster(fontSize: 37),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Column(
-              children: [
-                TextField(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0,
+                  vertical: 5,
+                ),
+
+                //User email key in box
+                child: TextField(
                   controller: _email,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -54,12 +61,20 @@ class _LoginViewState extends State<LoginView> {
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.email),
                     hintText: 'Enter Your Email Here',
-                    hintStyle: TextStyle(fontSize: 16),
+                    hintStyle: TextStyle(),
                     focusedBorder: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(),
                   ),
                 ),
-                TextField(
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25.0,
+                  vertical: 5,
+                ),
+
+                //User Key in Password
+                child: TextField(
                   controller: _password,
                   obscureText: true,
                   enableSuggestions: false,
@@ -73,85 +88,80 @@ class _LoginViewState extends State<LoginView> {
                     enabledBorder: OutlineInputBorder(),
                   ),
                 ),
-                TextButton(
-                  onPressed: () async {
-                    final email = _email.text;
-                    final password = _password.text;
-                    try {
-                      await AuthService.firebase().logIn(
-                        email: email,
-                        password: password,
+              ),
+
+              //Login Button
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.orangeAccent,
+                  side: const BorderSide(color: Colors.black54, width: 0.8),
+                  padding: const EdgeInsets.symmetric(horizontal: 155),
+                  textStyle: GoogleFonts.lobster(fontSize: 17),
+                ),
+                onPressed: () async {
+                  final email = _email.text;
+                  final password = _password.text;
+                  try {
+                    await AuthService.firebase().logIn(
+                      email: email,
+                      password: password,
+                    );
+                    final user = AuthService.firebase().currentUser;
+                    if (user?.isEmailVerified ?? false) {
+                      //If user email is verified
+                      //ignore: use_build_context_synchronously
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        noteRoute,
+                        (route) => false,
                       );
-                      final user = AuthService.firebase().currentUser;
-                      if (user?.isEmailVerified ?? false) {
-                        //If user email is verified
-                        //ignore: use_build_context_synchronously
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          noteRoute,
-                          (route) => false,
-                        );
-                      } else {
-                        // If user email is NOT verified
-                        ////ignore: use_build_context_synchronously
-                        Navigator.of(context).pushNamedAndRemoveUntil(
-                          verifyEmailRoute,
-                          (route) => false,
-                        );
-                      }
-                    } on UserNotFoundAuthException {
-                      await showErrorDialog(
-                        context,
-                        'User not found',
-                      );
-                    } on WrongPasswordAuthException {
-                      await showErrorDialog(
-                        context,
-                        'Wrong Password',
-                      );
-                    } on GenericAuthException {
-                      await showErrorDialog(
-                        context,
-                        'Authentication Error',
+                    } else {
+                      // If user email is NOT verified
+                      ////ignore: use_build_context_synchronously
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        verifyEmailRoute,
+                        (route) => false,
                       );
                     }
-                  },
-                  child: const Text("Login"),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      registerRoute,
-                      (route) => false,
+                  } on UserNotFoundAuthException {
+                    await showErrorDialog(
+                      context,
+                      'User not found',
                     );
-                  },
-                  child: const Text('Not registered yet? Register here!'),
-                )
-              ],
-            ),
+                  } on WrongPasswordAuthException {
+                    await showErrorDialog(
+                      context,
+                      'Wrong Password',
+                    );
+                  } on GenericAuthException {
+                    await showErrorDialog(
+                      context,
+                      'Authentication Error',
+                    );
+                  }
+                },
+                child: const Text("Login"),
+              ),
+
+              // Register redirect button
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    registerRoute,
+                    (route) => false,
+                  );
+                },
+                style: TextButton.styleFrom(
+                  textStyle: GoogleFonts.lobster(fontSize: 15),
+                ),
+                child: const Text('Not registered yet? Register here!'),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ***Old code This was remote***
 // After 26.07.22
